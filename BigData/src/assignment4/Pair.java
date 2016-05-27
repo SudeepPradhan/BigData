@@ -22,16 +22,21 @@ public class Pair<k extends Comparable<k>, v> implements Comparable<Pair<k, v>> 
 		this.value = value;
 	}
 
+	@Override
+	public int hashCode()
+	{
+		return (Integer)this.key;
+	}
+	
 	@SuppressWarnings("unchecked")
 	@Override
-	public boolean equals(Object other)
+	public boolean equals(Object o)
 	{
-        if (other instanceof Pair)
-        {
-            return this.key.equals(((Pair<String, Integer>)other).getKey()); 
-        }
-        else
-            return false;
+	    if(o == null) return false;
+	    if(!(o instanceof Pair<?, ?>)) return false;
+
+	    Pair<String, Integer> other = (Pair<String, Integer>) o;
+	    return this.key.equals(other.getKey());
 	}
 	
 	@Override

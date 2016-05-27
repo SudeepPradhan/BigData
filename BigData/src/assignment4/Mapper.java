@@ -19,14 +19,15 @@ public class Mapper {
 		{
 			if(s.matches("[a-zA-Z]+"))
 			{
-				if(pairList.contains(s))
+				Pair<String, Integer> newPair = new Pair<String, Integer>(s.toLowerCase(), 1);
+				if(pairList.contains(newPair))
 				{
-					Pair<String, Integer> pair = pairList.get(pairList.indexOf(s));
+					Pair<String, Integer> pair = pairList.get(pairList.indexOf(newPair));
 					pair.setValue(pair.getValue() + 1);
 				}
 				else
 				{
-					pairList.add(new Pair<String, Integer>(s.toLowerCase(), 1));
+					pairList.add(newPair);
 				}
 			}
 		}
