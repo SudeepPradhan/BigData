@@ -1,4 +1,4 @@
-package assignment6prob3;
+package assignment6prob3.Helper;
 
 import java.util.HashMap;
 import java.util.List;

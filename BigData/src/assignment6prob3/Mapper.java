@@ -5,6 +5,11 @@ import java.nio.file.Path;
 import java.util.Map;
 import java.util.TreeMap;
 
+import assignment6prob3.Base.MapperBase;
+import assignment6prob3.Helper.FileHelper;
+import assignment6prob3.Helper.Pair;
+import assignment6prob3.Helper.ShuffleSort;
+
 public class Mapper extends MapperBase{
 	Mapper(String id, Path filePath, Reducer[] reducers)
 	{

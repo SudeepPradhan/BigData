@@ -1,10 +1,10 @@
-package assignment6prob1;
+package assignment6prob1.Helper;
 
 public class Pair implements Comparable<Pair> {
 	public String key;
 	public String neighbour;
 	
-	Pair(String key, String neighbour)
+	public Pair(String key, String neighbour)
 	{
 		this.key = key;
 		this.neighbour = neighbour;

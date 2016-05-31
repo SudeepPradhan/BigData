@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.stream.IntStream;
 
+import assignment6prob2.Helper.FileHelper;
+
 public class Main {
 	static String SourceDir = "src\\assignment5prob2\\InputFile";
 	static Mapper[] Mappers = new Mapper[2];

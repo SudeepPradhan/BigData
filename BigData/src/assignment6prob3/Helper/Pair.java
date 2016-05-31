@@ -1,10 +1,10 @@
-package assignment6prob3;
+package assignment6prob3.Helper;
 
 public class Pair implements Comparable<Pair> {
 	public String sensorId;
 	public String time;
 	
-	Pair(String sensorId, String time)
+	public Pair(String sensorId, String time)
 	{
 		this.sensorId = sensorId;
 		this.time = time;

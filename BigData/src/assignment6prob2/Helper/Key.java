@@ -1,11 +1,11 @@
-package assignment6prob2;
+package assignment6prob2.Helper;
 
 public class Key implements Comparable<Key> {
-	String key;
+	public String key;
 	Integer id;
 	Integer line;
 	
-	Key(String key, Integer index, Integer line)
+	public Key(String key, Integer index, Integer line)
 	{
 		this.key = key;
 		this.id = index;

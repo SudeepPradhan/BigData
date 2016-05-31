@@ -1,9 +1,8 @@
-package assignment6prob2;
+package assignment6prob3.Helper;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 
 public class FileHelper {
 	public static String[] SplitTextFromFile(Path filePath, String delimiter) throws IOException
@@ -21,10 +20,5 @@ public class FileHelper {
 	public static String[] SplitTextFromContent(String content, String delimiter)
 	{
 		return content.split(delimiter);
-	}
-	
-	public static Path GetFilePath(String sourceDir, String fileName)
-	{
-		return Paths.get(sourceDir, fileName);
 	}
 }

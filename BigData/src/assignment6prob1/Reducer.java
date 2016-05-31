@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import assignment6prob1.Base.ReducerBase;
+import assignment6prob1.Helper.Pair;
+
 public class Reducer extends ReducerBase {
 	Reducer(String id)
 	{

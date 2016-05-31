@@ -1,4 +1,4 @@
-package assignment6prob3;
+package assignment6prob3.Helper;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,15 +1,19 @@
-package assignment6prob1;
+package assignment6prob3.Base;
 
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.TreeMap;
 
+import assignment6prob3.Reducer;
+import assignment6prob3.Helper.ConsolePrint;
+import assignment6prob3.Helper.Pair;
+
 public class MapperBase {
 	String Id;
-	Path FilePath;
-	HashMap<Pair, Integer> KeyNeighbourList = new HashMap<Pair, Integer>();
-	Reducer[] reducers;
-	TreeMap<Pair, Integer>[] reducerInput;
+	protected Path FilePath;
+	protected HashMap<Pair, String> SensorPair = new HashMap<Pair, String>();
+	protected Reducer[] reducers;
+	protected TreeMap<Pair, String>[] reducerInput;
 	
 	@SuppressWarnings("unchecked")
 	public void Initialize(String id, Path filePath, Reducer[] reducers)
@@ -17,17 +21,17 @@ public class MapperBase {
 		this.Id = id;
 		this.FilePath = filePath;
 		this.reducers = reducers;
-		this.reducerInput = (TreeMap<Pair, Integer>[]) new TreeMap[reducers.length];
+		this.reducerInput = (TreeMap<Pair, String>[]) new TreeMap[reducers.length];
 		
 		for(int i = 0; i < reducerInput.length; i++)
 		{
-			reducerInput[i] = new TreeMap<Pair, Integer>();
+			reducerInput[i] = new TreeMap<Pair, String>();
 		}
 	}
 	
 	public void PrintMapperOutput()
 	{
-		ConsolePrint.PrintMapperOutput(this.Id, this.KeyNeighbourList);
+		ConsolePrint.PrintMapperOutput(this.Id, this.SensorPair);
 	}
 	
 	public void PrintEmitterOutput()

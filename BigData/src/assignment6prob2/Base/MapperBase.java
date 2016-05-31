@@ -1,15 +1,19 @@
-package assignment6prob2;
+package assignment6prob2.Base;
 
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.TreeMap;
 
+import assignment6prob2.Reducer;
+import assignment6prob2.Helper.ConsolePrint;
+import assignment6prob2.Helper.Key;
+
 public class MapperBase {
 	String Id;
-	Path FilePath;
-	HashMap<Key, HashMap<String, Integer>> KeyNeighbourList = new HashMap<Key, HashMap<String, Integer>>();
-	Reducer[] Reducers;
-	TreeMap<Key, HashMap<String, Integer>>[] ReducerInputs;
+	protected Path FilePath;
+	protected HashMap<Key, HashMap<String, Integer>> KeyNeighbourList = new HashMap<Key, HashMap<String, Integer>>();
+	protected Reducer[] Reducers;
+	protected TreeMap<Key, HashMap<String, Integer>>[] ReducerInputs;
 	
 	@SuppressWarnings("unchecked")
 	public void Initialize(String id, Path filePath, Reducer[] reducers)

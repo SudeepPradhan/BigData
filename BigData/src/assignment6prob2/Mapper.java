@@ -6,6 +6,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
+import assignment6prob2.Base.MapperBase;
+import assignment6prob2.Helper.FileHelper;
+import assignment6prob2.Helper.Key;
+import assignment6prob2.Helper.ShuffleSort;
+
 public class Mapper extends MapperBase{
 
 	Mapper(String id, Path filePath, Reducer[] reducers)
