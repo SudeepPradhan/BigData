@@ -16,30 +16,24 @@ public class Mapper extends MapperBase{
 	
 	public void Map() throws IOException
 	{
-		String[] lines = FileHelper.SplitTextByLineBreak(this.FilePath);
+		String[] keys = FileHelper.SplitTextFromFile(this.FilePath, "\\W+");
+		String docId = keys[1];
 		
-		for(int l = 0; l < lines.length; l++)
+		for(int i = 2; i < keys.length; i++)
 		{
-			String[] keys = FileHelper.SplitTextFromContent(lines[l], "\\W+");
-			for(int i = 0; i < keys.length; i++)
-			{
-				for(String n : ShuffleSort.Neighbours(i, keys))
-				{ 
-					Pair pair = new Pair(keys[i], n);
-					if(KeyNeighbourList.containsKey(pair))
-						KeyNeighbourList.put(pair, KeyNeighbourList.get(pair) + 1);
-					else
-						KeyNeighbourList.put(pair, 1);
-				}
-			}
+			Pair pair = new Pair(keys[i], docId);
+			if(PairPosting.containsKey(pair))
+				PairPosting.put(pair, PairPosting.get(pair) + 1);
+			else
+				PairPosting.put(pair, 1);
 		}
 	}
 	
 	public void Emit()
 	{
-		for(Map.Entry<Pair, Integer> map : KeyNeighbourList.entrySet())
+		for(Map.Entry<Pair, Integer> map : PairPosting.entrySet())
 		{
-			Integer index = ShuffleSort.GetPartition(map.getKey().key, reducers.length);
+			Integer index = ShuffleSort.GetPartition(map.getKey().term, reducers.length);
 			this.reducerInput[index].put(map.getKey(), map.getValue());
 		}
 		

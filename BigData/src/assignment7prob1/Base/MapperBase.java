@@ -10,7 +10,7 @@ import assignment7prob1.Helper.*;
 public class MapperBase {
 	protected String Id;
 	protected Path FilePath;
-	protected HashMap<Pair, Integer> KeyNeighbourList = new HashMap<Pair, Integer>();
+	protected HashMap<Pair, Integer> PairPosting = new HashMap<Pair, Integer>();
 	protected Reducer[] reducers;
 	protected TreeMap<Pair, Integer>[] reducerInput;
 	
@@ -30,7 +30,7 @@ public class MapperBase {
 	
 	public void PrintMapperOutput()
 	{
-		ConsolePrint.PrintMapperOutput(this.Id, this.KeyNeighbourList);
+		ConsolePrint.PrintMapperOutput(this.Id, this.PairPosting);
 	}
 	
 	public void PrintEmitterOutput()

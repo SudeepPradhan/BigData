@@ -1,36 +1,52 @@
 package assignment6prob3.Helper;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.TreeMap;
 
 public class ConsolePrint {
-	public static void PrintMapperOutput(String id, HashMap<Pair, String> keyNeighbourList)
+	public static void PrintMapperOutput(String id, List<KeyValuePair> keyNeighbourList)
 	{
 		System.out.println("Mapper " + id + " Output" );
 		keyNeighbourList.forEach(
-				(k, v) -> System.out.println("< <" + k.sensorId + ", " + k.time + "> , " + v + " >"));
+				(k) -> System.out.println(
+						"< <" + k.sensorTimePair.sensorId + 
+						", " + k.sensorTimePair.time + 
+						"> , " + k.value + 
+						" >"));
 	}
 	
-	public static void PrintEmitterOutput(String id, TreeMap<Pair, String>[] reducerInput)
+	public static void PrintEmitterOutput(String id, List<KeyValuePair>[] reducerInput)
 	{
 		for(Integer i = 0; i < reducerInput.length; i ++)
 		{
-			TreeMap<Pair, String> pair = reducerInput[i];
+			List<KeyValuePair> kvp = reducerInput[i];
 			System.out.println("Pairs send from Mapper " + id + " Reducer " + i.toString());
-			pair.forEach((k, v) -> System.out.println("< <" + k.sensorId + ", " + k.time + "> , " + v + " >"));
+			kvp.forEach((k) -> System.out.println(
+					"< <" + k.sensorTimePair.sensorId + 
+					", " + k.sensorTimePair.time + 
+					"> , " + k.value + 
+					" >"));
 		}
 	}
 	
-	public static void PrintReducerInput(String id, TreeMap<Pair, List<String>> inputArray)
+	public static void PrintReducerInput(String id, List<KeyValuePair> inputArray)
 	{
 		System.out.println("Reducer " + id + " Input" );
-		inputArray.forEach((k, v) -> System.out.println("< <" + k.sensorId + ", " + k.time + "> , " + v.toString() + " >"));
+		inputArray.forEach(
+				(k) -> System.out.println(
+						"< <" + k.sensorTimePair.sensorId + 
+						", " + k.sensorTimePair.time + 
+						"> , [ " + k.value + 
+						" ] >"));
 	}
 	
-	public static void PrintReducerOutput(String id, TreeMap<Pair, String> outputArray)
+	public static void PrintReducerOutput(String id, List<KeyValuePair> outputArray)
 	{
 		System.out.println("Reducer " + id + " Output" );
-		outputArray.forEach((k, v) -> System.out.println("< " + k.sensorId + ", " + k.time + " , " + v.toString() + " >"));
+		outputArray.forEach(
+				(k) -> System.out.println(
+						"< " + k.sensorTimePair.sensorId + 
+						", " + k.sensorTimePair.time + 
+						" , " + k.value + 
+						" >"));
 	}
 }

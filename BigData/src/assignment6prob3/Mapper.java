@@ -2,12 +2,15 @@ package assignment6prob3;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.Collections;
+import java.util.List;
+
 
 import assignment6prob3.Base.MapperBase;
 import assignment6prob3.Helper.FileHelper;
-import assignment6prob3.Helper.Pair;
+import assignment6prob3.Helper.KeyValuePair;
+import assignment6prob3.Helper.KeyValuePairComparator;
+import assignment6prob3.Helper.SensorTimePair;
 import assignment6prob3.Helper.ShuffleSort;
 
 public class Mapper extends MapperBase{
@@ -24,22 +27,23 @@ public class Mapper extends MapperBase{
 		{
 			String[] keys = FileHelper.SplitTextFromContent(lines[l], "\\W+");
 			
-			Pair pair = new Pair(keys[1], keys[0]);
-			SensorPair.put(pair, keys[2]);
+			SensorTimePair pair = new SensorTimePair(keys[1], keys[0]);
+			SensorKeyValuePair.add(new KeyValuePair(pair, keys[2]));
 		}
 	}
 	
 	public void Emit()
 	{
-		for(Map.Entry<Pair, String> map : SensorPair.entrySet())
+		for(KeyValuePair pair: SensorKeyValuePair)
 		{
-			Integer index = ShuffleSort.GetPartition(map.getKey().sensorId, reducers.length);
-			this.reducerInput[index].put(map.getKey(), map.getValue());
+			Integer index = ShuffleSort.GetPartition(pair.sensorTimePair.sensorId, reducers.length);
+			this.reducerInput[index].add(pair);
+			//Collections.sort(this.reducerInput, new KeyValuePairComparator());
 		}
 		
 		for(Integer i = 0; i < this.reducerInput.length; i ++)
 		{
-			TreeMap<Pair, String> pair = this.reducerInput[i];
+			List<KeyValuePair> pair = this.reducerInput[i];
 			this.reducers[i].addInputList(pair);
 		}
 	}

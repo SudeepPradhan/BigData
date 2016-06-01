@@ -1,10 +1,10 @@
 package assignment6prob3.Helper;
 
-public class Pair implements Comparable<Pair> {
+public class SensorTimePair {
 	public String sensorId;
 	public String time;
 	
-	public Pair(String sensorId, String time)
+	public SensorTimePair(String sensorId, String time)
 	{
 		this.sensorId = sensorId;
 		this.time = time;
@@ -13,9 +13,9 @@ public class Pair implements Comparable<Pair> {
 	public boolean equals(Object o)
 	{
 	    if(o == null) return false;
-	    if(!(o instanceof Pair)) return false;
+	    if(!(o instanceof SensorTimePair)) return false;
 
-	    Pair other = (Pair) o;
+	    SensorTimePair other = (SensorTimePair) o;
 	    return this.sensorId.equals(other.sensorId) && this.time.equals(other.time);
 	}
 	
@@ -23,11 +23,5 @@ public class Pair implements Comparable<Pair> {
 	public int hashCode()
 	{
 		return this.sensorId.hashCode() + this.time.hashCode();
-	}
-
-	@Override
-	public int compareTo(Pair o) {
-		int lastCmp = this.sensorId.compareTo(o.sensorId);
-		return (lastCmp != 0 ? lastCmp : time.compareTo(o.time));
 	}
 }

@@ -2,6 +2,7 @@ package assignment7prob1;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -36,19 +37,23 @@ public class Reducer extends ReducerBase {
 	
 	public void Reduce()
 	{
-		int total = 0;
 		for(Map.Entry<Pair, List<Integer>> map : this.InputArray.entrySet())
 		{
-			if(map.getKey().neighbour == "0") 
+			Posting newPosting = new Posting(map.getKey().docId, map.getValue().get(0));
+			
+			if(this.OutputArray.containsKey(map.getKey().term))
 			{
-				total = map.getValue().stream().mapToInt(i -> i.intValue()).sum();
+				LinkedList<Posting> postings = this.OutputArray.get(map.getKey().term);
+				postings.addLast(newPosting);
 			}
 			else
 			{
+				LinkedList<Posting> postings = new LinkedList<Posting>();
+				postings.addLast(newPosting);
 				this.OutputArray.put(
-						map.getKey(), 
-						map.getValue().stream().mapToDouble(i -> i.intValue()).sum() / total);
-			}
+						map.getKey().term, 
+						postings);
+			}	
 		}
 	}
 }

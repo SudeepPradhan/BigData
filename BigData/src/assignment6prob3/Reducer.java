@@ -1,13 +1,9 @@
 package assignment6prob3;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 
 import assignment6prob3.Base.ReducerBase;
-import assignment6prob3.Helper.Pair;
+import assignment6prob3.Helper.KeyValuePair;
 
 public class Reducer extends ReducerBase {
 	Reducer(String id)
@@ -15,32 +11,22 @@ public class Reducer extends ReducerBase {
 		this.Id = id;
 	}
 	
-	public void addInputList(TreeMap<Pair, String> inputPairs)
+	public void addInputList(List<KeyValuePair> inputPairs)
 	{
-		for(Map.Entry<Pair, String> map : inputPairs.entrySet())
+		for(KeyValuePair kvp: inputPairs)
 		{
-			if(!this.InputArray.containsKey(map.getKey()))
+			if(!this.InputArray.contains(kvp))
 			{
-				this.InputArray.put(map.getKey(), Arrays.asList(map.getValue()));
-			}
-			else
-			{
-				List<String> newValue = new ArrayList<String>();
-				newValue.addAll(this.InputArray.get(map.getKey()));
-				newValue.add(map.getValue());
-
-				this.InputArray.put(map.getKey(), newValue);
+				this.InputArray.add(kvp);
 			}
 		}
 	}
 	
 	public void Reduce()
 	{
-		for(Map.Entry<Pair, List<String>> map : this.InputArray.entrySet())
+		for(KeyValuePair kvp: InputArray)
 		{
-			this.OutputArray.put(
-					map.getKey(), 
-					String.join("-", map.getValue()));
+			this.OutputArray.add(kvp);
 		}
 	}
 }
